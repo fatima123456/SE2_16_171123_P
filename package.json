@@ -1,17 +1,26 @@
 {
-  "name": "SE2_Progetto",
+  "name": "SE2Lab2_HEROKU",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
-  //"author": "",
-  //"license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fatima123456/SE2_16_171123_P.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fatima123456/SE2_16_171123_P.git"
+  },
+  "homepage": "https://github.com/fatima123456/SE2_16_171123_P.git#readme",
   "dependencies": {
-    "body-parser": "^1.15.2",
     "express": "^4.14.0",
-    "util": "^0.10.3",
-    "bind": "^0.7.0"
+    "bind":"^0.1.7",
+    "util": "^0.10.3"
   }
 }
