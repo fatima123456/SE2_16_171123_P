@@ -13,8 +13,12 @@
             <div class="navbar-header">
                 <a href="/" class="navbar-brand" style="color:white">InfoUni</a>
             </div>
-            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1024px-Flag_of_the_United_Kingdom.svg.png" class="flag" id="EngFlag">
-            <img src="http://www.clipartkid.com/images/94/free-clipart-italian-flag-flags-XIBpzg-clipart.png" class="flag" id="ItaFlag">
+            <a href="/">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1024px-Flag_of_the_United_Kingdom.svg.png" class="flag" id="EngFlag">
+            </a>
+            <a href="/ita">
+                <img src="http://www.clipartkid.com/images/94/free-clipart-italian-flag-flags-XIBpzg-clipart.png" class="flag" id="ItaFlag">
+            </a>
         </div>
         
         <div class="row" id="container">
@@ -33,7 +37,7 @@
                 (:if[english] ~
                     [:then ~ <h3>Here you can find informations about your future University in Italy.<br>
                     Just click on the circle near the city of the university you're interested in.</h3>:]
-                    [:else ~ <h1>Benvenuto!</h1>:]
+                    [:else ~ <h3>Qui puoi trovare le informazioni della tua futura università in Italia. <br> Clicca sul bollino vicino alla città che ti interessa per visualizzare i dati riguardanti l'università.</h3>:]
                 :)
             </div>
             

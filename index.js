@@ -15,6 +15,21 @@ app.set('port',(process.env.PORT||1337));
 //to include css 
 app.use(express.static(__dirname + '/public'));
 
+app.get('/ita',function(request,response){
+    var headers = {};
+    headers["Content-Type"] = "text/html";
+    
+    bind.toFile('pages/home.tpl',
+    {
+        english: false,
+        showTabella: true
+    },
+    function(data){
+        response.writeHead(200,headers);
+        response.end(data);
+    });
+});
+
 app.get('/', function(request, response){
     var headers={};
     //
@@ -36,6 +51,7 @@ app.get('/', function(request, response){
         response.end(data);
     });
 });
+
 
 
 app.listen(app.get('port'), function(){
