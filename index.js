@@ -13,7 +13,7 @@ var app = express();
 app.set('port',(process.env.PORT||1337));
 
 //to include css 
-//app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(request, response){
     var headers={};
@@ -28,6 +28,7 @@ app.get('/', function(request, response){
     
     bind.toFile('pages/home.tpl',
     {
+        english: true,
         showTabella: true
     },
     function(data){

@@ -1,0 +1,50 @@
+#ItaliaImage{
+    width: 400px;
+    height: 500px;
+    z-index: 1;
+    position: absolute;
+    left: 40px;
+}
+
+.flag{
+    width: 50px; 
+    height: 30px;
+    position: absolute;
+    top: 10px;
+}
+
+#EngFlag{
+    right: 100px;
+}
+
+#ItaFlag{
+    right: 30px;
+}
+
+.UniBttn{
+    z-index:2;
+    background-color:red; 
+    position:absolute; 
+    height:15px; 
+    width:10px; 
+    border-radius:10px
+}
+
+#TrentoBttn{
+    top:35px; 
+    left:180px; 
+}
+
+#RomaBttn{
+    top:250px; 
+    left:210px;
+}
+
+.navbar{
+    background-color: black;
+}
+
+#container{
+    position: relative;
+    
+}

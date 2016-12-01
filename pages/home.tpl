@@ -3,26 +3,42 @@
     <head>
         <meta charset = "utf-8">
         <title>UniInfo</title>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="../css/styleHome.css" />
+        
+        
     </head>
     <body>
-        <img src="http://www.fossili.it/immagini/italia.gif" id="ItaliaImage" style="display:none">
-        <div class="canvasContainer">
-            <canvas id="myCanvas" width="400" height="500" style="z-index:1; position:absolute"> 
-            Your browser does not support the HTML5 canvas tag.
-            </canvas>
-            <button style="z-index:2;background-color:red; position:absolute; top:45px; left:150px; height:15px; width:10px; border-radius:10px"></button>
-            <button style="z-index:2;background-color:red; position:absolute; top:255px; left:180px; height:15px; width:10px; border-radius:10px"></button>
+        <div class="navbar navbar-deafault" id="nav" >
+            <div class="navbar-header">
+                <a href="/" class="navbar-brand" style="color:white">InfoUni</a>
+            </div>
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1024px-Flag_of_the_United_Kingdom.svg.png" class="flag" id="EngFlag">
+            <img src="http://www.clipartkid.com/images/94/free-clipart-italian-flag-flags-XIBpzg-clipart.png" class="flag" id="ItaFlag">
         </div>
-        <script>
-            //devo togliere questo script inline
-            window.onload = function() {
-            var canvas = document.getElementById("myCanvas");
-            var ctx = canvas.getContext("2d");
-            var img = document.getElementById("ItaliaImage");
-            ctx.drawImage(img, 0, 0,400,500);
-            };
-        </script>
         
+        <div class="row" id="container">
+            
+            <div class="col-md-4" id="canvasContainer">
+                <img src="http://www.fossili.it/immagini/italia.gif" id="ItaliaImage" >
+                <button class="UniBttn" id="TrentoBttn"></button>
+                <button class="UniBttn" id="RomaBttn"></button>
+            </div>
+            
+            <div class="col-md-8" >
+                (:if[english] ~
+                    [:then ~ <h1>Welcome!</h1>:]
+                    [:else ~ <h1>Benvenuto!</h1>:]
+                :)
+                (:if[english] ~
+                    [:then ~ <h3>Here you can find informations about your future University in Italy.<br>
+                    Just click on the circle near the city of the university you're interested in.</h3>:]
+                    [:else ~ <h1>Benvenuto!</h1>:]
+                :)
+            </div>
+            
+        </div>
+        
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </body>
 </html>
