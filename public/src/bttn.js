@@ -4,16 +4,16 @@ $b=1;
 
 $(document).ready(function(){
     
-    $("#TrentoBttn").click(function(){
+    $("#bttn").click(function(){
         
         if($a == 1 || $b == 0){
-            $("#TrentoBttn").css("background-color","blue");
+            $("#bttn").css("background-color","blue");
             $a=1;
         }
-        //else{
-        //    $("#TrentoBttn").css("background-color","red");
-        //    $a=0;
-        //}
+        else{
+            $("#bttn").css("background-color","red");
+            $a=0;
+        }
         
     });
     
