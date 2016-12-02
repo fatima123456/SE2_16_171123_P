@@ -12,7 +12,7 @@ var app = express();
 
 app.set('port',(process.env.PORT||1337));
 
-//to include css 
+//to include css, src and images
 app.use(express.static(__dirname + '/public'));
 
 app.get('/ita',function(request,response){
@@ -21,8 +21,7 @@ app.get('/ita',function(request,response){
     
     bind.toFile('pages/home.tpl',
     {
-        english: false,
-        showTabella: true
+        italianHome: true
     },
     function(data){
         response.writeHead(200,headers);
@@ -43,8 +42,7 @@ app.get('/', function(request, response){
     
     bind.toFile('pages/home.tpl',
     {
-        english: true,
-        showTabella: true
+        englishHome: true
     },
     function(data){
         response.writeHead(200,headers);

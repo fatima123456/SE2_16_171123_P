@@ -5,8 +5,9 @@
         <title>UniInfo</title>
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="../css/styleHome.css" />
-        
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="../src/bttn.js"></script>
+
     </head>
     <body>
         <div class="navbar navbar-deafault" id="nav" >
@@ -24,25 +25,33 @@
         <div class="row" id="container">
             
             <div class="col-md-4" id="canvasContainer">
-                <img src="http://www.fossili.it/immagini/italia.gif" id="ItaliaImage" >
+                <img src="../images/italia.gif" id="ItaliaImage" >
                 <button class="UniBttn" id="TrentoBttn"></button>
                 <button class="UniBttn" id="RomaBttn"></button>
             </div>
             
             <div class="col-md-8" >
-                (:if[english] ~
-                    [:then ~ <h1>Welcome!</h1>:]
-                    [:else ~ <h1>Benvenuto!</h1>:]
-                :)
-                (:if[english] ~
-                    [:then ~ <h3>Here you can find informations about your future University in Italy.<br>
-                    Just click on the circle near the city of the university you're interested in.</h3>:]
-                    [:else ~ <h3>Qui puoi trovare le informazioni della tua futura università in Italia. <br> Clicca sul bollino vicino alla città che ti interessa per visualizzare i dati riguardanti l'università.</h3>:]
-                :)
+                
+                
+                    (:if[englishHome] ~
+                        [:then ~ <h1>Welcome!</h1>:]
+                    :)
+                    (:if[italianHome] ~
+                        [:then ~ <h1>Benvenuto!</h1>:]
+                    :)
+                    (:if[englishHome] ~
+                        [:then ~ <h3>Here you can find informations about your future University in Italy.<br>
+                        Just click on the circle near the city of the university you're interested in.</h3>:]
+                    :)
+                    (:if[italianHome] ~
+                        [:then ~ <h3>Qui puoi trovare le informazioni della tua futura università in Italia. <br> Clicca sul bollino vicino alla città che ti interessa per visualizzare i dati riguardanti l'università.</h3>:]
+                    :)
+                    
             </div>
             
         </div>
         
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
     </body>
 </html>
