@@ -26,8 +26,8 @@
             
             <div class="col-md-4" id="canvasContainer">
                 <img src="../images/italia.gif" id="ItaliaImage" >
-                <button class="UniBttn" id="TrentoBttn"></button>
-                <button class="UniBttn" id="RomaBttn"></button>
+                <button class="UniBttn" id="Trento"></button>
+                <button class="UniBttn" id="Roma"></button>
             </div>
             
             <div class="col-md-8" >
