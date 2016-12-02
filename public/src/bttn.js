@@ -12,10 +12,17 @@ $(document).ready(function(){
         if($TrentoClicked==0 && $RomaClicked==0){
             //it sets the color of the clicked button to blue 
             $(this).css("background-color","blue");
-            //$.post("http://127.0.0.1:1337/tab")
-            //{
-                //city: this.id
-            //}
+            
+            //it sends the post request with the name of the city
+            $.post("http://localhost:1337/tab",
+            {
+                city: this.id
+            },
+            function(data,status){
+                alert("sto per cancellare");
+                $("#welcomeContainer").css("display","none");
+            });
+            
             //if Trento is clicked sets the variable TrentoClicked to 1, else it sets the variable RomaClicked to 1
             if(this.id == "Trento")
             {
@@ -47,6 +54,7 @@ $(document).ready(function(){
                 ;
             }
             else{
+                //if the button clicked wasn't already clicked then it sets its color to blue, and the variable that takes track if it is clicked or not is updated (to clicked)
                 $(this).css("background-color","blue");
                 if(this.id == "Trento")
                 {

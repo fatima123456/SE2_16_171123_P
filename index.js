@@ -7,6 +7,9 @@ var util = require('util');
 //lib for templates
 var bind = require('bind');
 
+//lib for post request handling
+var bodyParser = require('body-parser');
+
 //instantiate express
 var app = express();
 
@@ -14,6 +17,24 @@ app.set('port',(process.env.PORT||1337));
 
 //to include css, src and images
 app.use(express.static(__dirname + '/public'));
+
+app.post('/tab',function(request,response){
+    //alert("sto postanto");
+    console.log("sono entrato in post");
+    var headers = {};
+    headers["Content-Type"] = "text/html";
+    bind.toFile('pages/home.tpl',
+    {
+        tab: true
+    },
+    function(data){
+        console.log("hei");
+        response.writeHead(200,headers);
+        response.end(data);
+    });
+    
+    
+});
 
 app.get('/ita',function(request,response){
     var headers = {};

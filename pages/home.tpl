@@ -32,7 +32,7 @@
             
             <div class="col-md-8" >
                 
-                
+                <div id="welcomeContainer">
                     (:if[englishHome] ~
                         [:then ~ <h1>Welcome!</h1>:]
                     :)
@@ -46,6 +46,8 @@
                     (:if[italianHome] ~
                         [:then ~ <h3>Qui puoi trovare le informazioni della tua futura università in Italia. <br> Clicca sul bollino vicino alla città che ti interessa per visualizzare i dati riguardanti l'università.</h3>:]
                     :)
+                </div>
+                
                     
             </div>
             
