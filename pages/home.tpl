@@ -48,13 +48,95 @@
                     :)
                 </div>
                 
-                <div id="infoUnicaUni">
-                    
-                    <p>Teaching</p>
+                <div id="infoUni" style="display:none">
+                
+                    <p>Teaching:</p>
                     <table>
-                        <th></th>
+                        <tr>
+                            <th>Reputation survey (0-10)</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th>Staff/student ratio</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th>dovtorate/bachelor ratio</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th>doctorate-awarded-to-bachelor ratio</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th>job in 3 months(after graduating)</th>
+                            <th></th>
+                        </tr>
                     </table>
-                    
+                
+                    <p>Research:</p>
+                    <table>
+                        <tr>
+                            <th>Reputation survey (0-10)</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th>Research income(0-10)</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th>Research productivity(0-10)</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th>Research influence(0-10)</th>
+                            <th></th>
+                        </tr>
+                    </table>
+                
+                    <p>International Outlook:</p>
+                    <table>
+                        <tr>
+                            <th>Students who studied abroad ratio</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th>International-to-domestic student ratio</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th>international collaboration</th>
+                            <th></th>
+                        </tr>
+                    </table>
+                
+                    <p>Financial support:</p>
+                    <table>
+                        <tr>
+                            <th>Scholarschip(average)</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th>possibility to work in the university</th>
+                            <th></th>
+                        </tr>
+                    </table>
+                
+                    <p>Services:</p>
+                    <table>
+                        <tr>
+                            <th>Reputation survey (0-10)</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th>Accomodation</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th>Transport</th>
+                            <th></th>
+                        </tr>
+                    </table>
                 </div>
                     
             </div>
