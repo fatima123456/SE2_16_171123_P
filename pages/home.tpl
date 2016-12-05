@@ -52,89 +52,59 @@
                 
                     <p>Teaching:</p>
                     <table>
-                        <tr>
-                            <th>Reputation survey (0-10)</th>
+                        <tr id="teachInfo">
                             <th></th>
-                        </tr>
-                        <tr>
+                            <th>Reputation survey<br> (0-10)</th>
                             <th>Staff/student ratio</th>
-                            <th></th>
-                        </tr>
-                        <tr>
                             <th>dovtorate/bachelor ratio</th>
-                            <th></th>
+                            <th>doctorate-awarded-to-bachelor<br> ratio</th>
+                            <th>job in 3 months<br>(after graduating)</th>
                         </tr>
-                        <tr>
-                            <th>doctorate-awarded-to-bachelor ratio</th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <th>job in 3 months(after graduating)</th>
-                            <th></th>
-                        </tr>
+                        
                     </table>
                 
+                    <p></p>
                     <p>Research:</p>
                     <table>
-                        <tr>
+                        <tr id="researchInfo">
+                            <th></th>
                             <th>Reputation survey (0-10)</th>
-                            <th></th>
-                        </tr>
-                        <tr>
                             <th>Research income(0-10)</th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <th>Research productivity(0-10)</th>
-                            <th></th>
-                        </tr>
-                        <tr>
+                            <th>Research productivity<br>(0-10)</th>
                             <th>Research influence(0-10)</th>
-                            <th></th>
                         </tr>
+                        
                     </table>
                 
+                    <p></p>
                     <p>International Outlook:</p>
                     <table>
-                        <tr>
+                        <tr id="interInfo">
+                            <th></th>
                             <th>Students who studied abroad ratio</th>
-                            <th></th>
-                        </tr>
-                        <tr>
                             <th>International-to-domestic student ratio</th>
-                            <th></th>
-                        </tr>
-                        <tr>
                             <th>international collaboration</th>
-                            <th></th>
                         </tr>
                     </table>
                 
+                    <p></p>
                     <p>Financial support:</p>
                     <table>
-                        <tr>
+                        <tr id="ecoInfo">
+                            <th></th>
                             <th>Scholarschip(average)</th>
-                            <th></th>
-                        </tr>
-                        <tr>
                             <th>possibility to work in the university</th>
-                            <th></th>
                         </tr>
                     </table>
                 
+                    <p></p>
                     <p>Services:</p>
                     <table>
-                        <tr>
+                        <tr id="servInfo">
+                            <th></th>
                             <th>Reputation survey (0-10)</th>
-                            <th></th>
-                        </tr>
-                        <tr>
                             <th>Accomodation</th>
-                            <th></th>
-                        </tr>
-                        <tr>
                             <th>Transport</th>
-                            <th></th>
                         </tr>
                     </table>
                 </div>
@@ -144,6 +114,7 @@
         </div>
         
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="info.js"></script>
         
     </body>
 </html>
