@@ -1,10 +1,19 @@
 //
 $TrentoClicked=0;
 $RomaClicked=0;
+$ItaliaClicked=0;
+//
+$indexInTab=[-1,-1,-1];
+//
+$countUniClicked=0;
+//
+$nUniCurrentlyClicked=0;
 
 $.insertInTable=function($data,$cit){
     alert("sono in insert");
-    var $html='<tr id="teachData">';
+    $nUniCurrentlyClicked+=1;
+    
+    var $html='<tr id="teachData'+$countUniClicked+'">';
     $html+='<th>'+$cit+': </th>';
     for(var i=0; i<5;i++){
         $html+='<th>'+$data[i]+'</th>';
@@ -12,7 +21,7 @@ $.insertInTable=function($data,$cit){
     $html+="</tr>";
     $("#teachInfo").after($html);
     
-    $html='<tr id="researchData">';
+    $html='<tr id="researchData'+$countUniClicked+'">';
     $html+='<th>'+$cit+': </th>';
     for(var i=5; i<9;i++){
         $html+='<th>'+$data[i]+'</th>';
@@ -20,7 +29,7 @@ $.insertInTable=function($data,$cit){
     $html+="</tr>";
     $("#researchInfo").after($html);
     
-    var $html='<tr id="interInfo">';
+    var $html='<tr id="interInfo'+$countUniClicked+'">';
     $html+='<th>'+$cit+': </th>';
     for(var i=9; i<12;i++){
         $html+='<th>'+$data[i]+'</th>';
@@ -28,40 +37,75 @@ $.insertInTable=function($data,$cit){
     $html+="</tr>";
     $("#interInfo").after($html);
     
-    var $html='<tr id="ecoData">';
+    var $html='<tr id="ecoData'+$countUniClicked+'">';
     $html+='<th>'+$cit+': </th>';
-    for(var i=12; i<14;i++){
+    for(var i=12; i<17;i++){
         $html+='<th>'+$data[i]+'</th>';
     }
     $html+="</tr>";
     $("#ecoInfo").after($html);
-    
-    var $html='<tr id="servData">';
-    $html+='<th>'+$cit+': </th>';
-    for(var i=14; i<17;i++){
-        $html+='<th>'+$data[i]+'</th>';
+    $countUniClicked+=1;
+}
+
+$.resetPage = function(){
+    $("#welcomeContainer").css("display","block");
+    $("#infoUni").css("display","none");
+}
+
+$.deleteRow = function($index){
+    $nUniCurrentlyClicked-=1;
+    $("#teachData"+$index).remove();
+    $("#researchData"+$index).remove();
+    $("#interInfo"+$index).remove();
+    $("#ecoData"+$index).remove();
+    if($nUniCurrentlyClicked==0){
+        $.resetPage();
     }
-    $html+="</tr>";
-    $("#servInfo").after($html);
-    
-    
 }
 
 $.qwerf=function($c){alert($c);}
 
 $(document).ready(function(){
-    
+    alert("sono in doc");
     $(".UniBttn").click(function(){
-        
-        //if the city buttons are both not clicked, then when the user click one of them it sends a post request with the name of the city in which the user is interested
-        if($TrentoClicked==0 && $RomaClicked==0){
+        //if the button was already clicked, then it sets its color to red then it removes the rows in the table with its informations, and then it updates the variable that tells wether it is clicked or not
+        //in this case it is Trento, in the other it is Rome
+        if(this.id == "Trento" && $TrentoClicked==1)
+        {
+            $(this).css("background-color","red");
+            $.deleteRow($indexInTab[0]);
+            $TrentoClicked=0;
+        }
+        else if(this.id == "Roma" && $RomaClicked==1){
+            $(this).css("background-color","red");
+            $.deleteRow($indexInTab[1]);
+            $RomaClicked=0;
+            
+        }
+        //if the button was not already clicked then it changes its color and sends a post request to have the info, and it updates the table
+        else{
+            
             //it sets the color of the clicked button to blue 
             $(this).css("background-color","blue");
-            //the welcome message is canceled
+            
+            //the welcome message is canceled, to do if it is the first time!!
             $("#welcomeContainer").css("display","none");
             $("#infoUni").css("display","block");
+            
+            //if Trento is clicked sets the variable TrentoClicked to 1, else it sets the variable RomaClicked to 1
+            if(this.id == "Trento")
+            {
+                $TrentoClicked=1;
+                $indexInTab[0]=$countUniClicked;
+            }
+            else{
+                $RomaClicked=1;
+                $indexInTab[1]=$countUniClicked;
+            }
+            
             //it sends the post request with the name of the city
             var cit = this.id;
+            
             $.post("http://localhost:1337/tab",
             {
                 city: this.id
@@ -71,48 +115,36 @@ $(document).ready(function(){
                 $.insertInTable(data.info,cit);
             });
             
-            //if Trento is clicked sets the variable TrentoClicked to 1, else it sets the variable RomaClicked to 1
-            if(this.id == "Trento")
-            {
-                $TrentoClicked=1;
-            }
-            else{
-                $RomaClicked=1;
-            }
+            
         }
-        //if they are both already clicked, then it sends a post request with the city just clicked
-        else if($TrentoClicked==1 && $RomaClicked==1)
-        {
-            //if Trento is clicked then Roma is "unclicked", and vice-versa
-            if(this.id == "Trento")
-            {
-                $RomaClicked=0;
-                $("#Roma").css("background-color","red");
-            }
-            else{
-                $TrentoClicked=0;
-                $("#Trento").css("background-color","red");
-            }
-        }
-        //if one of the two is already clicked, then if the button clicked is already clicked nothing happens, otherwise it sends a post request to obtain the info of both cities 
-        else 
-        {
-            if((this.id == "Trento" && $TrentoClicked==1)||(this.id == "Roma" && $RomaClicked==1))
-            {
-                ;
-            }
-            else{
-                //if the button clicked wasn't already clicked then it sets its color to blue, and the variable that takes track if it is clicked or not is updated (to clicked)
-                $(this).css("background-color","blue");
-                if(this.id == "Trento")
-                {
-                    $TrentoClicked=1;
-                }
-                else{
-                    $RomaClicked=1;
-                }
-            }
-        }
+        
     });
     
+    $("#Italia").click(function(){
+        alert("sono in ita");
+        if($ItaliaClicked == 1){
+            $.deleteRow($indexInTab[2]);
+            $ItaliaClicked = 0;
+        }
+        else{
+            alert("prima");
+            $("#welcomeContainer").css("display","none");
+            $("#infoUni").css("display","block");
+            
+            $ItaliaClicked=1;
+            $indexInTab[2]=$countUniClicked;
+            
+            var cit=this.id;
+            
+            $.post("http://localhost:1337/tab",
+            {
+                city: this.id
+            },
+            function(data,status){
+                //insert the data in the table
+                alert("prima di insert");
+                $.insertInTable(data.info,cit);
+            });
+        }
+    });
 });

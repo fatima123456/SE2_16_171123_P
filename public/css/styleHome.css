@@ -11,6 +11,8 @@
     height: 30px;
     position: absolute;
     top: 10px;
+    border-color: black;
+    border-image-width: 3 px;
 }
 
 #EngFlag{
@@ -41,7 +43,7 @@
 }
 
 .navbar{
-    background-color: black;
+    background-color:#1d1356;
 }
 
 #container{
@@ -49,6 +51,9 @@
     
 }
 
+.navText{
+    color: white;
+}
 table{
     border-collapse: collapse;
 }

@@ -14,6 +14,34 @@
             <div class="navbar-header">
                 <a href="/" class="navbar-brand" style="color:white">InfoUni</a>
             </div>
+            <ul class= "nav navbar-nav">
+                <li><a href="/" class="navText">home</a></li>
+                <li>
+                    (:if[englishHome] ~
+                        [:then ~ <a class="navText" id="Italia">Italian average</a>:]
+                    :)
+                    (:if[italianHome] ~
+                        [:then ~ <a class="navText">Media Italiana</a>:]
+                    :)
+                </li>
+                <li>
+                    (:if[englishHome] ~
+                        [:then ~ <a class="navText">Filter Parameters</a>:]
+                    :)
+                    (:if[italianHome] ~
+                        [:then ~ <a class="navText">Filtra parametri</a>:]
+                    :)
+                </li>
+                <li>
+                    (:if[englishHome] ~
+                        [:then ~ <a class="navText">ranking</a>:]
+                    :)
+                    (:if[italianHome] ~
+                        [:then ~ <a class="navText">classifica</a>:]
+                    :)
+                </li>
+            </ul>
+            
             <a href="/">
                 <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1024px-Flag_of_the_United_Kingdom.svg.png" class="flag" id="EngFlag">
             </a>
@@ -88,25 +116,18 @@
                     </table>
                 
                     <p></p>
-                    <p>Financial support:</p>
+                    <p>Financial support and services:</p>
                     <table>
                         <tr id="ecoInfo">
                             <th></th>
                             <th>Scholarschip(average)</th>
                             <th>possibility to work in the university</th>
-                        </tr>
-                    </table>
-                
-                    <p></p>
-                    <p>Services:</p>
-                    <table>
-                        <tr id="servInfo">
-                            <th></th>
                             <th>Reputation survey (0-10)</th>
                             <th>Accomodation</th>
                             <th>Transport</th>
                         </tr>
                     </table>
+                
                 </div>
                     
             </div>
