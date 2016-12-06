@@ -118,13 +118,8 @@ $.deleteColumn = function(){
         if($parametersChecked['par'+i]==0 && $visible[i]==1){
             //alert("deleto "+i);
             $("#tit"+i).css("display","none");
-<<<<<<< Updated upstream
-=======
             $visible[i]=0;
->>>>>>> Stashed changes
-        }
-        else{
-            $("#tit"+i).css("display","block");
+
         }
     }
     
