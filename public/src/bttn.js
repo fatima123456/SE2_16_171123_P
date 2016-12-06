@@ -95,6 +95,9 @@ $.deleteColumn = function(){
             //alert("deleto "+i);
             $("#tit"+i).css("display","none");
         }
+        else{
+            $("#tit"+i).css("display","block");
+        }
     }
 }
 
