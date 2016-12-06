@@ -34,7 +34,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.post('/tab',function(request,response){
-    //alert("sto postanto");
+    
     //console.log("sono entrato in post");
     var headers = {};
     headers["Content-Type"] = "application/json";

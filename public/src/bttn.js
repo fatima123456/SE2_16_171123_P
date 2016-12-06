@@ -9,70 +9,75 @@ $countUniClicked=0;
 //
 $nUniCurrentlyClicked=0;
 
-$parametersChecked={par0:1, par1:1, par2:1, par3:1, par4:1, par5:1, par6:1, par7:1, par8:1, par9:1, par10:1, par11:1, par13:1, par14:1, par15:1, par16:1, par17:1};
+$parametersChecked={par0:1, par1:1, par2:1, par3:1, par4:1, par5:1, par6:1, par7:1, par8:1, par9:1, par10:1, par11:1,par12:1, par13:1, par14:1, par15:1, par16:1, par17:1};
 
 //$parChk=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
 
+$.appendToTable = function($idToInsert,$idToAppendTo,$data,$cit,$inizio,$finito){
+    //alert("inserisco in "+$idToAppendTo);
+    var $html='<tr id="'+$idToInsert+$countUniClicked+'">';
+    $html+='<th>'+$cit+': </th>';
+    for(var i=$inizio; i<$finito;i++){
+        
+        if($parametersChecked['par'+i]==1){
+            //alert(i+"    "+$data[i]);
+            $html+='<th>'+$data[i]+'</th>';
+        }
+        
+    }
+    $html+="</tr>";
+    $($idToAppendTo).after($html);
+    
+}
+
 $.insertInTable=function($data,$cit){
-    alert("sono in insert");
+    //alert("creao la riga "+$countUniClicked);
     //
     $nUniCurrentlyClicked+=1;
     
-    var $html='<tr id="teachData'+$countUniClicked+'">';
-    $html+='<th>'+$cit+': </th>';
-    for(var i=0; i<5;i++){
-        if($parametersChecked['par'+i]==1){
-            $html+='<th>'+$data[i]+'</th>';
-        }
-    }
-    $html+="</tr>";
-    $("#teachInfo").after($html);
+    $.appendToTable("teachData","#teachInfo",$data,$cit,0,5);
     
-    $html='<tr id="researchData'+$countUniClicked+'">';
-    $html+='<th>'+$cit+': </th>';
-    for(var i=5; i<9;i++){
-        if($parametersChecked['par'+i]==1){
-            $html+='<th>'+$data[i]+'</th>';
-        }
-    }
-    $html+="</tr>";
-    $("#researchInfo").after($html);
+    $.appendToTable("researchData","#researchInfo",$data,$cit,5,9);
     
-    var $html='<tr id="interInfo'+$countUniClicked+'">';
-    $html+='<th>'+$cit+': </th>';
-    for(var i=9; i<12;i++){
-        if($parametersChecked['par'+i]==1){
-            $html+='<th>'+$data[i]+'</th>';
-        }
-    }
-    $html+="</tr>";
-    $("#interInfo").after($html);
+    $.appendToTable("interData","#interInfo",$data,$cit,9,12);
     
-    var $html='<tr id="ecoData'+$countUniClicked+'">';
-    $html+='<th>'+$cit+': </th>';
-    for(var i=12; i<17;i++){
-        if($parametersChecked['par'+i]==1){
-            $html+='<th>'+$data[i]+'</th>';
-        }
-    }
-    $html+="</tr>";
-    $("#ecoInfo").after($html);
+    $.appendToTable("ecoData","#ecoInfo",$data,$cit,12,17);
+    
     $countUniClicked+=1;
 }
 
 $.resetPage = function(){
+    //alert("resetto la pagina");
     $("#welcomeContainer").css("display","block");
     $("#infoUni").css("display","none");
+    $.resetTable();
+    $(".UniBttn").css("background-color","red");
+    $TrentoClicked=0;
+    $RomaClicked=0;
+    $ItaliaClicked=0;
+}
+
+$.resetTable = function(){
+    //alert("ci sono "+$nUniCurrentlyClicked+" righe");
+    var j=$countUniClicked-1;
+    var n=$nUniCurrentlyClicked;
+    //alert("resetto la tabella");
+    for(var i=0; i<n; i++){
+        $.deleteRow(j);
+        j-=1;
+    }
 }
 
 $.deleteRow = function($index){
+    //alert("cancello la riga "+$index);
     $nUniCurrentlyClicked-=1;
     $("#teachData"+$index).remove();
     $("#researchData"+$index).remove();
-    $("#interInfo"+$index).remove();
+    $("#interData"+$index).remove();
     $("#ecoData"+$index).remove();
     if($nUniCurrentlyClicked==0){
-        $.resetPage();
+        $("#welcomeContainer").css("display","block");
+        $("#infoUni").css("display","none");
     }
 }
 
@@ -84,18 +89,18 @@ $.qwerf=function($c){alert($c);}
 }*/
 
 $.deleteColumn = function(){
-    alert("deleto");
+    //alert("deleto");
     for(var i=0; i<17; i++){
         if($parametersChecked['par'+i]==0){
-            alert("deleto "+i);
+            //alert("deleto "+i);
             $("#tit"+i).css("display","none");
         }
     }
 }
 
 $(document).ready(function(){
-    alert("sono in doc");
-    alert($parametersChecked['par0']);
+    //alert("sono in document");
+    //alert($parametersChecked['par0']);
     $(".UniBttn").click(function(){
         //if the button was already clicked, then it sets its color to red then it removes the rows in the table with its informations, and then it updates the variable that tells wether it is clicked or not
         //in this case it is Trento, in the other it is Rome
@@ -135,7 +140,7 @@ $(document).ready(function(){
             //it sends the post request with the name of the city
             var cit = this.id;
             
-            $.post("http://localhost:1337/tab",
+            $.post("/tab",
             {
                 city: this.id
             },
@@ -150,13 +155,13 @@ $(document).ready(function(){
     });
     
     $("#Italia").click(function(){
-        alert("sono in ita");
+        //alert("sono in ita");
         if($ItaliaClicked == 1){
             $.deleteRow($indexInTab[2]);
             $ItaliaClicked = 0;
         }
         else{
-            alert("prima");
+            //alert("prima");
             $("#welcomeContainer").css("display","none");
             $("#infoUni").css("display","block");
             
@@ -171,14 +176,14 @@ $(document).ready(function(){
             },
             function(data,status){
                 //insert the data in the table
-                alert("prima di insert");
+                //alert("prima di insert");
                 $.insertInTable(data.info,cit);
             });
         }
     });
     
     $("#filterNav").click(function(){
-        alert("entro");
+        //alert("entro");
         $("#container").css("display","none");
         $("#filterContainer").css("display","block");
     });
@@ -201,5 +206,6 @@ $(document).ready(function(){
         $.deleteColumn();
         $("#container").css("display","block");
         $("#filterContainer").css("display","none");
+        $.resetPage();
     });
 });
