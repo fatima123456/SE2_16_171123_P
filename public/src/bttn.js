@@ -170,7 +170,7 @@ $(document).ready(function(){
             
             var cit=this.id;
             
-            $.post("http://localhost:1337/tab",
+            $.post("/tab",
             {
                 city: this.id
             },
