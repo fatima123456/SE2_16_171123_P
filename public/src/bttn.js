@@ -11,7 +11,7 @@ $nUniCurrentlyClicked=0;
 
 $parametersChecked={par0:1, par1:1, par2:1, par3:1, par4:1, par5:1, par6:1, par7:1, par8:1, par9:1, par10:1, par11:1,par12:1, par13:1, par14:1, par15:1, par16:1, par17:1};
 
-//$parChk=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
+$visible=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
 
 $.appendToTable = function($idToInsert,$idToAppendTo,$data,$cit,$inizio,$finito){
     //alert("inserisco in "+$idToAppendTo);
@@ -88,18 +88,47 @@ $.qwerf=function($c){alert($c);}
     
 }*/
 
-$.deleteColumn = function(){
-    //alert("deleto");
+$.precedente=function($n,$index){
+    var res=-1;
+    for(var i=$index; i>=$n;i--){
+        if($visible[i]==1){
+            res=i;
+            break;
+        }
+    }
+    return res;
+}
+
+$.addColumn=function(){
     for(var i=0; i<17; i++){
-        if($parametersChecked['par'+i]==0){
-            //alert("deleto "+i);
-            $("#tit"+i).css("display","none");
+        //alert(i+": "+$parametersChecked['par'+i]+"    "+$visible[i]);
+        if($parametersChecked['par'+i]==1 && $visible[i]==0){
+            alert("aggiungo "+i);
+            $a=$.precedente(i);
+            
+            $("#tit"+i).css("display","block");
+            $visible[i]=1;
         }
     }
 }
 
+$.deleteColumn = function(){
+    alert("deleto");
+    for(var i=0; i<17; i++){
+        if($parametersChecked['par'+i]==0 && $visible[i]==1){
+            //alert("deleto "+i);
+            $("#tit"+i).css("display","none");
+<<<<<<< Updated upstream
+=======
+            $visible[i]=0;
+>>>>>>> Stashed changes
+        }
+    }
+    
+}
+
 $(document).ready(function(){
-    //alert("sono in document");
+    alert("sono in document");
     //alert($parametersChecked['par0']);
     $(".UniBttn").click(function(){
         //if the button was already clicked, then it sets its color to red then it removes the rows in the table with its informations, and then it updates the variable that tells wether it is clicked or not
@@ -204,6 +233,7 @@ $(document).ready(function(){
     $("#filterBttn").click(function(){
         //alert("torno");
         $.deleteColumn();
+        $.addColumn();
         $("#container").css("display","block");
         $("#filterContainer").css("display","none");
         $.resetPage();
