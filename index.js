@@ -41,9 +41,11 @@ app.post('/tab',function(request,response){
     var headers = {};
     headers["Content-Type"] = "application/json";
     
-    var json;
+    var json=JSON.stringify({
+        info: infoUnis[request.body.city]
+    });
     
-    if(request.body.city == "Trento"){
+    /*if(request.body.city == "Trento"){
         json = JSON.stringify({
             info: infoTrento
         })
@@ -57,7 +59,7 @@ app.post('/tab',function(request,response){
         json = JSON.stringify({
             info: infoItalia
         })
-    }
+    }*/
     
     response.writeHead(200,headers);
     response.end(json);
