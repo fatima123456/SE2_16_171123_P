@@ -18,6 +18,9 @@ var bind = require('bind');
 //lib for post request handling
 var bodyParser = require('body-parser');
 
+//useless for now
+var fs = require('fs');
+
 //instantiate express
 var app = express();
 
@@ -58,6 +61,19 @@ app.post('/tab',function(request,response){
     response.end(json);
 });
 
+
+//useless for now 
+/*app.get('/filter',function(request,response){
+    var headers = {};
+    headers["Content-Type"] = "text/html";
+    
+    response.writeHead(200,headers);
+    
+    var html = fs.readFileSync('./pages/filter.html', 'utf8')
+    response.end(html);  
+});*/
+
+
 app.get('/ita',function(request,response){
     var headers = {};
     headers["Content-Type"] = "text/html";
@@ -92,6 +108,14 @@ app.get('/', function(request, response){
         response.end(data);
     });
 });
+
+/*app.post('/',function(request,response){
+    console.log("hi");
+    var headers = {};
+    headers["Content-Type"] = "text/html";
+    response.writeHead(200,headers);
+    re
+});*/
 
 
 

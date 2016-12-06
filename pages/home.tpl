@@ -7,7 +7,6 @@
         <link rel="stylesheet" type="text/css" href="../css/styleHome.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="../src/bttn.js"></script>
-
     </head>
     <body>
         <div class="navbar navbar-deafault" id="nav" >
@@ -21,15 +20,15 @@
                         [:then ~ <a class="navText" id="Italia">Italian average</a>:]
                     :)
                     (:if[italianHome] ~
-                        [:then ~ <a class="navText">Media Italiana</a>:]
+                        [:then ~ <a class="navText" id="Italia">Media Italiana</a>:]
                     :)
                 </li>
                 <li>
                     (:if[englishHome] ~
-                        [:then ~ <a class="navText">Filter Parameters</a>:]
+                        [:then ~ <a class="navText" id="filterNav">Filter Parameters</a>:]
                     :)
                     (:if[italianHome] ~
-                        [:then ~ <a class="navText">Filtra parametri</a>:]
+                        [:then ~ <a class="navText" id="filter">Filtra parametri</a>:]
                     :)
                 </li>
                 <li>
@@ -82,11 +81,11 @@
                     <table>
                         <tr id="teachInfo">
                             <th></th>
-                            <th>Reputation survey<br> (0-10)</th>
-                            <th>Staff/student ratio</th>
-                            <th>dovtorate/bachelor ratio</th>
-                            <th>doctorate-awarded-to-bachelor<br> ratio</th>
-                            <th>job in 3 months<br>(after graduating)</th>
+                            <th id="tit0">Reputation survey<br> (0-10)</th>
+                            <th id="tit1">Staff/student ratio</th>
+                            <th id="tit2">dovtorate/bachelor ratio</th>
+                            <th id="tit3">doctorate-awarded-to-bachelor<br> ratio</th>
+                            <th id="tit4">job in 3 months<br>(after graduating)</th>
                         </tr>
                         
                     </table>
@@ -96,10 +95,10 @@
                     <table>
                         <tr id="researchInfo">
                             <th></th>
-                            <th>Reputation survey (0-10)</th>
-                            <th>Research income(0-10)</th>
-                            <th>Research productivity<br>(0-10)</th>
-                            <th>Research influence(0-10)</th>
+                            <th id="tit5">Reputation survey (0-10)</th>
+                            <th id="tit6">Research income(0-10)</th>
+                            <th id="tit7">Research productivity<br>(0-10)</th>
+                            <th id="tit8">Research influence(0-10)</th>
                         </tr>
                         
                     </table>
@@ -109,9 +108,9 @@
                     <table>
                         <tr id="interInfo">
                             <th></th>
-                            <th>Students who studied abroad ratio</th>
-                            <th>International-to-domestic student ratio</th>
-                            <th>international collaboration</th>
+                            <th id="tit9">Students who studied abroad ratio</th>
+                            <th id="tit10">International-to-domestic student ratio</th>
+                            <th id="tit11">international collaboration</th>
                         </tr>
                     </table>
                 
@@ -120,11 +119,11 @@
                     <table>
                         <tr id="ecoInfo">
                             <th></th>
-                            <th>Scholarschip(average)</th>
-                            <th>possibility to work in the university</th>
-                            <th>Reputation survey (0-10)</th>
-                            <th>Accomodation</th>
-                            <th>Transport</th>
+                            <th id="tit12">Scholarschip(average)</th>
+                            <th id="tit13">possibility to work in the university</th>
+                            <th id="tit14">Reputation survey (0-10)</th>
+                            <th id="tit15">Accomodation</th>
+                            <th id="tit16">Transport</th>
                         </tr>
                     </table>
                 
@@ -134,8 +133,57 @@
             
         </div>
         
+        <div id="filterContainer" style="display:none">
+            
+            
+                <p>Teaching:</p>
+                <input type="checkbox" name="par0" class="par" value="" checked>Reputation survey
+                <br>
+                <input type="checkbox" name="par1" class="par" value="" checked>Staff to student ratio
+                <br>
+                <input type="checkbox" name="par2" class="par" value="" checked>Doctorates to bachelors ratio
+                <br>
+                <input type="checkbox" name="par3" class="par" value="" checked>Doctorate awarded to accademic staff ratio
+                <br>
+                <input type="checkbox" name="par4" class="par" value="" checked>job in 3 months(after graduating)
+                <br><br><br>
+            
+                <p>Research:</p>
+                <input type="checkbox" name="par5" class="par" value="" checked>Reputation survey
+                <br>
+                <input type="checkbox" name="par6" class="par" value="" checked>Research income
+                <br>
+                <input type="checkbox" name="par7" class="par" value="" checked>Research productivity
+                <br>
+                <input type="checkbox" name="par8" class="par" value="" checked>Research influence (citations)
+                <br><br><br>
+            
+                <p>International outlook:</p>
+                <input type="checkbox" name="par9" class="par" value="" checked>Student who studied abroad ratio
+                <br>
+                <input type="checkbox" name="par10" class="par" value="" checked>International to domestic ratio
+                <br>
+                <input type="checkbox" name="par11" class="par" value="" checked>International collaboration
+                <br><br><br>
+            
+                <p>Services and financial support:</p>
+                <input type="checkbox" name="par12" class="par" value="" checked>Scholarschip
+                <br>
+                <input type="checkbox" name="par13" class="par" value="" checked>Possibility to work in the University
+                <br>
+                <input type="checkbox" name="par14" class="par" value="" checked>Reputational survey(for the services)
+                <br>
+                <input type="checkbox" name="par15" class="par" value="" checked>Accomodation(average if present)
+                <br>
+                <input type="checkbox" name="par16" class="par" value="" checked>transport
+                <br><br>
+            
+                <button id="filterBttn">SUBMIT</button>
+                
+            
+        </div>
+        
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="info.js"></script>
         
     </body>
 </html>
