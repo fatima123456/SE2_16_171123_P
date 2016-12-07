@@ -271,4 +271,8 @@ $(document).ready(function(){
         $("#tableRanking").css("display","block");
         $("#filterContainer").css("display","none");
     });
+    
+    $("#Departments").click(function(){
+        
+    });
 });

@@ -81,10 +81,10 @@
                         You can also choose to view the informaions about the single departments: 
                     </p>
                     <div class="row" id="Departments">
-                        <button >Engineering</button>
-                        <button>Languages</button>
-                        <button>Medicine</button>
-                        <button>Sociology</button>
+                        <button id="engineering">Engineering</button>
+                        <button id="languages">Languages</button>
+                        <button id="medicine">Medicine</button>
+                        <button id="sociology">Sociology</button>
                     </div>
                     
                     <p>Teaching:</p>
