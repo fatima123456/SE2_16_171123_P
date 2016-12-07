@@ -33,7 +33,7 @@
                 </li>
                 <li>
                     (:if[englishHome] ~
-                        [:then ~ <a class="navText">ranking</a>:]
+                        [:then ~ <a class="navText" id="rank">ranking</a>:]
                     :)
                     (:if[italianHome] ~
                         [:then ~ <a class="navText">classifica</a>:]
@@ -181,6 +181,27 @@
                 <button id="filterBttn">SUBMIT</button>
                 
             
+        </div>
+        
+        <div id="tableRanking" style="display:none">
+            <table>
+                <tr>
+                    <td>1</td>
+                    <td>Trento</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Roma</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Firenze</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>...</td>
+                </tr>
+            </table>
         </div>
         
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

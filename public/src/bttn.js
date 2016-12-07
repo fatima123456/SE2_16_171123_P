@@ -1,10 +1,9 @@
-//variables that say wether a city is currently clicked or not
-$TrentoClicked=0;
-$RomaClicked=0;
-$ItaliaClicked=0;
+//object to say wether a city is clicked or not
+$clicked={Italia:0, Trento:0, Roma:0, Firenze:0};
+$cities=["Italia", "Trento", "Roma", "Firenze"];
 
-//array that saves the index of a city in the table, Trento will be saved in $indexInTab[0], Roma in $indexInTab[1], italia in $indexInTab[2]
-$indexInTab=[-1,-1,-1];
+//object that saves the index of a city in the table
+$indexInTab={Italia:-1, Trento:-1, Roma:-1, Firenze:-1};
 
 //variable to save how many times the cities are clicked, it is used to give unic ids to the row of the tables
 $countUniClicked=0;
@@ -72,13 +71,16 @@ $.insertInTable=function($data,$cit){
  */
 $.resetPage = function(){
     //alert("resetto la pagina");
+    $("#container").css("display","block");
+    $("#filterContainer").css("display","none");
     $("#welcomeContainer").css("display","block");
+    $("#tableRanking").css("display","none");
     $("#infoUni").css("display","none");
     $.resetTable();
     $(".UniBttn").css("background-color","red");
-    $TrentoClicked=0;
-    $RomaClicked=0;
-    $ItaliaClicked=0;
+    for(var i=0; i<$cities.length;i++){
+        $clicked[$cities[i]]=0;
+    }
 }
 
 /*
@@ -161,99 +163,90 @@ $.deleteColumn = function(){
     }
     
 }
+/*
+ *@brief when a city(or Italy) is clicked it updates its "cliclked" value in the object $clicked and deletes (or adds) rows in the table
+ *@param $id: the id of the element clicked(namely the name of the city clicked)
+ *@return nothing
+ */
+$clickCity = function($id){
+     //if the city was already clicked, it removes the rows in the table with its informations, and then it updates the variable that tells wether it is clicked or not
+        if($clicked[$id] == 1){
+            alert($id);
+            
+            $.deleteRow($indexInTab[$id]);
+            $clicked[$id]=0;
+        }
+        
+        //if the button was not already clicked then it changes its color and sends a post request to have the info, and it updates the table
+        else{
+            
+            //it sets the color of the clicked button to blue(if it is not Italy)
+            /*if($id !== "Italia"){
+                alert($id);
+                $($id).css("background-color","blue");
+            } */
+            
+            //the welcome message is canceled, to do if it is the first time that a uni is clicked
+            if($nUniCurrentlyClicked==0){
+                $("#welcomeContainer").css("display","none");
+                $("#infoUni").css("display","block");
+            }
+            
+            //saves that it is clicked, and its index in the table
+            $clicked[$id]=1;
+            $indexInTab[$id]=$countUniClicked;
+            
+            //it sends the post request with the name of the city requested to get the info
+            var cit = $id;
+            
+            $.post("/tab",
+            {
+                city: cit
+            },
+            function(data,status){
+                //insert the data in the table
+                $.insertInTable(data.info,cit);
+            });
+            
+            
+        }
+}
 
 $(document).ready(function(){
     alert("sono in document");
     //alert($parametersChecked['par0']);
     $(".UniBttn").click(function(){
-        //if the button was already clicked, then it sets its color to red then it removes the rows in the table with its informations, and then it updates the variable that tells wether it is clicked or not
-        //in this case it is Trento, in the other it is Rome
-        if(this.id == "Trento" && $TrentoClicked==1)
-        {
+        //alert("click");
+        //it sets the color of the clicked button to red if it was already clicked
+        if($clicked[this.id] == 1){
+            alert("color");
             $(this).css("background-color","red");
-            $.deleteRow($indexInTab[0]);
-            $TrentoClicked=0;
         }
-        else if(this.id == "Roma" && $RomaClicked==1){
-            $(this).css("background-color","red");
-            $.deleteRow($indexInTab[1]);
-            $RomaClicked=0;
-            
-        }
-        //if the button was not already clicked then it changes its color and sends a post request to have the info, and it updates the table
+        //it sets the color of the clicked button to blue if it was not clicked
         else{
-            
-            //it sets the color of the clicked button to blue 
             $(this).css("background-color","blue");
-            
-            //the welcome message is canceled, to do if it is the first time!!
-            $("#welcomeContainer").css("display","none");
-            $("#infoUni").css("display","block");
-            
-            //if Trento is clicked sets the variable TrentoClicked to 1, else it sets the variable RomaClicked to 1
-            if(this.id == "Trento")
-            {
-                $TrentoClicked=1;
-                $indexInTab[0]=$countUniClicked;
-            }
-            else{
-                $RomaClicked=1;
-                $indexInTab[1]=$countUniClicked;
-            }
-            
-            //it sends the post request with the name of the city
-            var cit = this.id;
-            
-            $.post("/tab",
-            {
-                city: this.id
-            },
-            function(data,status){
-                //insert the data in the table
-                $.insertInTable(data.info,cit);
-            });
-            
-            
         }
+        $clickCity(this.id);
         
     });
     
     $("#Italia").click(function(){
-        //alert("sono in ita");
-        if($ItaliaClicked == 1){
-            $.deleteRow($indexInTab[2]);
-            $ItaliaClicked = 0;
-        }
-        else{
-            //alert("prima");
-            $("#welcomeContainer").css("display","none");
-            $("#infoUni").css("display","block");
-            
-            $ItaliaClicked=1;
-            $indexInTab[2]=$countUniClicked;
-            
-            var cit=this.id;
-            
-            $.post("/tab",
-            {
-                city: this.id
-            },
-            function(data,status){
-                //insert the data in the table
-                //alert("prima di insert");
-                $.insertInTable(data.info,cit);
-            });
-        }
+        //italia is clicked, so it calls the clickCity procedure
+        $.resetPage();
+        $clickCity(this.id);
     });
     
     $("#filterNav").click(function(){
         //alert("entro");
+        //when the user wants to filter, then the italian map and the welcome message disappears, and appears the form in which he can filter the parameters
         $("#container").css("display","none");
         $("#filterContainer").css("display","block");
+        $("#tableRanking").css("display","none");
     });
     
     $(".par").click(function(){
         //alert(this.name);
+        //saves in the object if a determined parameter is checked or not: if it wasn't checked,then it puts 1(true) in $parametersChecked[this.name] and vice versa
         if($parametersChecked[this.name]==0){
             //alert("lo chekko");
             $parametersChecked[this.name]=1;
@@ -267,10 +260,16 @@ $(document).ready(function(){
     
     $("#filterBttn").click(function(){
         //alert("torno");
+        //when the submit button of filtering is clicked the column filtered must be deleted, the ones reinserted must be added.
         $.deleteColumn();
         $.addColumn();
-        $("#container").css("display","block");
-        $("#filterContainer").css("display","none");
+        //it resets the page
         $.resetPage();
+    });
+    
+    $("#rank").click(function(){
+        //it shows the table with the ranking of the universities... the table is not really calculated, because for lack of time I didn't afford to develop this feature...
+        $("#container").css("display","none");
+        $("#tableRanking").css("display","block");
     });
 });
