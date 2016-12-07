@@ -61,10 +61,10 @@ $.insertInTable=function($data,$cit,$index){
     $nUniCurrentlyClicked+=1;
     
     //appends the row with the info to all the tables
-    $.appendToTable("teachData","#teachInfo",$data,$cit,0,5);
-    $.appendToTable("researchData","#researchInfo",$data,$cit,5,9);
-    $.appendToTable("interData","#interInfo",$data,$cit,9,12);
-    $.appendToTable("ecoData","#ecoInfo",$data,$cit,12,17);
+    $.appendToTable("teachData","#teachInfo",$data,$cit,0,5,$index);
+    $.appendToTable("researchData","#researchInfo",$data,$cit,5,9,$index);
+    $.appendToTable("interData","#interInfo",$data,$cit,9,12,$index);
+    $.appendToTable("ecoData","#ecoInfo",$data,$cit,12,17,$index);
     
     //increase of the clicks
     
@@ -238,9 +238,9 @@ $.updateTable = function(){
             $cit=$cities[i];
             
             alert("updato la citta: "+$cities[i]);
-            /*$.deleteRow($indexInTab[$cit]);
+            $.deleteRow($indexInTab[$cit]);
             $clicked[$cit]=0;
-            $clickCity($cit);*/
+            $clickCity($cit);
         }
     }
 }
