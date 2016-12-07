@@ -77,6 +77,16 @@
                 
                 <div id="infoUni" style="display:none">
                 
+                    <p> 
+                        You can also choose to view the informaions about the single departments: 
+                    </p>
+                    <div class="row" id="Departments">
+                        <button >Engineering</button>
+                        <button>Languages</button>
+                        <button>Medicine</button>
+                        <button>Sociology</button>
+                    </div>
+                    
                     <p>Teaching:</p>
                     <table>
                         <tr id="teachInfo">

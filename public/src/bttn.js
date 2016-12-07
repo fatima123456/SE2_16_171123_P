@@ -171,21 +171,18 @@ $.deleteColumn = function(){
 $clickCity = function($id){
      //if the city was already clicked, it removes the rows in the table with its informations, and then it updates the variable that tells wether it is clicked or not
         if($clicked[$id] == 1){
-            alert($id);
+            alert("rimuovo"+$id);
             
             $.deleteRow($indexInTab[$id]);
             $clicked[$id]=0;
+            if($nUniCurrentlyClicked==0){
+                $.resetPage();
+            }
         }
         
         //if the button was not already clicked then it changes its color and sends a post request to have the info, and it updates the table
         else{
-            
-            //it sets the color of the clicked button to blue(if it is not Italy)
-            /*if($id !== "Italia"){
-                alert($id);
-                $($id).css("background-color","blue");
-            } */
-            
+            alert("aggiungo"+$id);
             //the welcome message is canceled, to do if it is the first time that a uni is clicked
             if($nUniCurrentlyClicked==0){
                 $("#welcomeContainer").css("display","none");
@@ -207,7 +204,6 @@ $clickCity = function($id){
                 //insert the data in the table
                 $.insertInTable(data.info,cit);
             });
-            
             
         }
 }
@@ -231,8 +227,10 @@ $(document).ready(function(){
     });
     
     $("#Italia").click(function(){
+        $("#container").css("display","block");
+        $("#tableRanking").css("display","none");
+        $("#filterContainer").css("display","none");
         //italia is clicked, so it calls the clickCity procedure
-        $.resetPage();
         $clickCity(this.id);
     });
     
@@ -271,5 +269,6 @@ $(document).ready(function(){
         //it shows the table with the ranking of the universities... the table is not really calculated, because for lack of time I didn't afford to develop this feature...
         $("#container").css("display","none");
         $("#tableRanking").css("display","block");
+        $("#filterContainer").css("display","none");
     });
 });
