@@ -1,11 +1,16 @@
 //////////////////////////////////////////////////////////////////////
-var infoUnis={Trento:[0.2,0.1,0.34,0.23,"23%",0.12,0.36,0.7,0.56,0.8,0.5,0.2,"1234 euro","yes",0.4,"220 euro in average","20 euro/month"],Roma:[0.2,0.1,0.34,0.23,"93%",0.12,0.36,0.7,0.56,0.8,0.5,0.2,"1234 euro","yes",0.4,"240 euro in average","50 euro/month"],Italia:[0.2,0.1,0.34,0.23,"93%",0.12,0.36,0.7,0.56,0.8,0.5,0.2,"1234 euro","yes",0.4,"240 euro in average","90 euro/month"]}
+var ave={Trento:[0.2,0.1,0.34,0.23,"23%",0.12,0.36,0.7,0.56,0.8,0.5,0.2,"1234 euro","yes",0.4,"220 euro in average","20 euro/month"],Roma:[0.2,0.1,0.34,0.23,"93%",0.12,0.36,0.7,0.56,0.8,0.5,0.2,"1234 euro","yes",0.4,"240 euro in average","50 euro/month"],Italia:[0.2,0.1,0.34,0.23,"93%",0.12,0.36,0.7,0.56,0.8,0.5,0.2,"1234 euro","yes",0.4,"240 euro in average","90 euro/month"]};
 
-/*var infoTrento =[0.2,0.1,0.34,0.23,"23%",0.12,0.36,0.7,0.56,0.8,0.5,0.2,"1234 euro","yes",0.4,"220 euro in average","20 euro/month"];
+var eng={Trento:[0.3,0.1,0.34,0.23,"23%",0.12,0.36,0.7,0.56,0.8,0.5,0.2,"1234 euro","yes",0.4,"220 euro in average","20 euro/month"],Roma:[0.3,0.1,0.34,0.23,"93%",0.12,0.36,0.7,0.56,0.8,0.5,0.2,"1234 euro","yes",0.4,"240 euro in average","50 euro/month"],Italia:[0.2,0.1,0.34,0.23,"93%",0.12,0.36,0.7,0.56,0.8,0.5,0.2,"1234 euro","yes",0.4,"240 euro in average","90 euro/month"]};
 
-var infoRoma =[0.2,0.1,0.34,0.23,"93%",0.12,0.36,0.7,0.56,0.8,0.5,0.2,"1234 euro","yes",0.4,"240 euro in average","50 euro/month"];
+var lang={Trento:[0.4,0.1,0.34,0.23,"23%",0.12,0.36,0.7,0.56,0.8,0.5,0.2,"1234 euro","yes",0.4,"220 euro in average","20 euro/month"],Roma:[0.4,0.1,0.34,0.23,"93%",0.12,0.36,0.7,0.56,0.8,0.5,0.2,"1234 euro","yes",0.4,"240 euro in average","50 euro/month"],Italia:[0.2,0.1,0.34,0.23,"93%",0.12,0.36,0.7,0.56,0.8,0.5,0.2,"1234 euro","yes",0.4,"240 euro in average","90 euro/month"]};
 
-var infoItalia =[0.2,0.1,0.34,0.23,"93%",0.12,0.36,0.7,0.56,0.8,0.5,0.2,"1234 euro","yes",0.4,"240 euro in average","90 euro/month"];*/
+var med={Trento:[0.5,0.1,0.34,0.23,"23%",0.12,0.36,0.7,0.56,0.8,0.5,0.2,"1234 euro","yes",0.4,"220 euro in average","20 euro/month"],Roma:[0.5,0.1,0.34,0.23,"93%",0.12,0.36,0.7,0.56,0.8,0.5,0.2,"1234 euro","yes",0.4,"240 euro in average","50 euro/month"],Italia:[0.2,0.1,0.34,0.23,"93%",0.12,0.36,0.7,0.56,0.8,0.5,0.2,"1234 euro","yes",0.4,"240 euro in average","90 euro/month"]};
+
+var soc={Trento:[0.6,0.1,0.34,0.23,"23%",0.12,0.36,0.7,0.56,0.8,0.5,0.2,"1234 euro","yes",0.4,"220 euro in average","20 euro/month"],Roma:[0.6,0.1,0.34,0.23,"93%",0.12,0.36,0.7,0.56,0.8,0.5,0.2,"1234 euro","yes",0.4,"240 euro in average","50 euro/month"],Italia:[0.2,0.1,0.34,0.23,"93%",0.12,0.36,0.7,0.56,0.8,0.5,0.2,"1234 euro","yes",0.4,"240 euro in average","90 euro/month"]};
+
+var infoUnis={average: ave, engineering: eng, languages: lang, medicine: med, sociology: soc};
+
 //////////////////////////////////////////////////////////////////////
 
 // express lib
@@ -37,29 +42,19 @@ app.use(bodyParser.json());
 
 app.post('/tab',function(request,response){
     
-    //console.log("sono entrato in post");
+    console.log("sono entrato in post");
     var headers = {};
     headers["Content-Type"] = "application/json";
     
+    var res=infoUnis[request.body.depart];
+    
     var json=JSON.stringify({
-        info: infoUnis[request.body.city]
+        info: res[request.body.city]
     });
     
     response.writeHead(200,headers);
     response.end(json);
 });
-
-
-//useless for now 
-/*app.get('/filter',function(request,response){
-    var headers = {};
-    headers["Content-Type"] = "text/html";
-    
-    response.writeHead(200,headers);
-    
-    var html = fs.readFileSync('./pages/filter.html', 'utf8')
-    response.end(html);  
-});*/
 
 
 app.get('/ita',function(request,response){
@@ -96,16 +91,6 @@ app.get('/', function(request, response){
         response.end(data);
     });
 });
-
-/*app.post('/',function(request,response){
-    console.log("hi");
-    var headers = {};
-    headers["Content-Type"] = "text/html";
-    response.writeHead(200,headers);
-    re
-});*/
-
-
 
 app.listen(app.get('port'), function(){
     console.log('Node app is running on port', app.get('port'));

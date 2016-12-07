@@ -5,6 +5,9 @@ $cities=["Italia", "Trento", "Roma", "Firenze"];
 //object that saves the index of a city in the table
 $indexInTab={Italia:-1, Trento:-1, Roma:-1, Firenze:-1};
 
+//the department that is currently clicked, on default on "average"(I treat the average as all the other departments)
+$depClicked="average";
+
 //variable to save how many times the cities are clicked, it is used to give unic ids to the row of the tables
 $countUniClicked=0;
 
@@ -27,10 +30,11 @@ $visible=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
  *@param {number} finito- the index to which stop pulling the info from the param data
  *@return nothing
  */
-$.appendToTable = function($idToInsert,$idToAppendTo,$data,$cit,$inizio,$finito){
+$.appendToTable = function($idToInsert,$idToAppendTo,$data,$cit,$inizio,$finito,$index){
+    //alert("inserisco in "+$idToAppendTo);
     //alert("inserisco in "+$idToAppendTo);
     //initialize the variables html in which the html code for the row will be stored
-    var $html='<tr id="'+$idToInsert+$countUniClicked+'">';
+    var $html='<tr id="'+$idToInsert+$index+'">';
     $html+='<th>'+$cit+': </th>';
     for(var i=$inizio; i<$finito;i++){
         //if the parameter is not filtered from the user, so it is checked, then add a cell in the row storing in it its information
@@ -51,8 +55,8 @@ $.appendToTable = function($idToInsert,$idToAppendTo,$data,$cit,$inizio,$finito)
  *@param {string} cit- first element(city) that must be put in the rows of the tables
  *@return nothing
  */
-$.insertInTable=function($data,$cit){
-    //alert("creao la riga "+$countUniClicked);
+$.insertInTable=function($data,$cit,$index){
+    alert("creao la riga "+$index+" per la"+$cit);
     //increase the number of the cities clicked
     $nUniCurrentlyClicked+=1;
     
@@ -63,7 +67,9 @@ $.insertInTable=function($data,$cit){
     $.appendToTable("ecoData","#ecoInfo",$data,$cit,12,17);
     
     //increase of the clicks
-    $countUniClicked+=1;
+    
+    
+    //alert("dopo aver inserito "+$cit+"aumento il count "+$countUniClicked);
 }
 /*
  *@brief resets the homepage, to its initial look
@@ -76,10 +82,12 @@ $.resetPage = function(){
     $("#welcomeContainer").css("display","block");
     $("#tableRanking").css("display","none");
     $("#infoUni").css("display","none");
+    $("#depInsertedShow").css("display","block");
     $.resetTable();
     $(".UniBttn").css("background-color","red");
     for(var i=0; i<$cities.length;i++){
         $clicked[$cities[i]]=0;
+        $indexInTab[$cities[i]]=-1;
     }
 }
 
@@ -96,6 +104,7 @@ $.resetTable = function(){
         $.deleteRow(j);
         j-=1;
     }
+    
 }
 
 /*
@@ -104,16 +113,21 @@ $.resetTable = function(){
  *@return nothing
  */
 $.deleteRow = function($index){
-    //alert("cancello la riga "+$index);
+    alert("cancello la riga "+$index);
     $nUniCurrentlyClicked-=1;
+    //removes the rows with the index specified as param 
+    alert("removing teachData" + $index);
     $("#teachData"+$index).remove();
+    alert("removing reserchData" + $index);
     $("#researchData"+$index).remove();
     $("#interData"+$index).remove();
     $("#ecoData"+$index).remove();
     if($nUniCurrentlyClicked==0){
         $("#welcomeContainer").css("display","block");
+        $("#depInsertedShow").css("display","block");
         $("#infoUni").css("display","none");
     }
+    
 }
 
 //quite useless :)
@@ -169,11 +183,12 @@ $.deleteColumn = function(){
  *@return nothing
  */
 $clickCity = function($id){
+    //alert("entered in click city");
      //if the city was already clicked, it removes the rows in the table with its informations, and then it updates the variable that tells wether it is clicked or not
         if($clicked[$id] == 1){
-            alert("rimuovo"+$id);
-            
+            //alert("rimuovo"+$id);
             $.deleteRow($indexInTab[$id]);
+            $indexInTab[$id]=-1;
             $clicked[$id]=0;
             if($nUniCurrentlyClicked==0){
                 $.resetPage();
@@ -182,7 +197,7 @@ $clickCity = function($id){
         
         //if the button was not already clicked then it changes its color and sends a post request to have the info, and it updates the table
         else{
-            alert("aggiungo"+$id);
+            //alert("aggiungo"+$id);
             //the welcome message is canceled, to do if it is the first time that a uni is clicked
             if($nUniCurrentlyClicked==0){
                 $("#welcomeContainer").css("display","none");
@@ -192,30 +207,54 @@ $clickCity = function($id){
             //saves that it is clicked, and its index in the table
             $clicked[$id]=1;
             $indexInTab[$id]=$countUniClicked;
+            alert("sono in clickCitu e metto ind "+$countUniClicked+" a "+$id);
             
             //it sends the post request with the name of the city requested to get the info
             var cit = $id;
-            
+            var index=$countUniClicked;
             $.post("/tab",
             {
-                city: cit
+                city: cit,
+                depart: $depClicked
             },
             function(data,status){
                 //insert the data in the table
-                $.insertInTable(data.info,cit);
+                $.insertInTable(data.info,cit,index);
+                //alert(data.info[0]);
             });
-            
+            $countUniClicked+=1;
         }
 }
+/*
+ *@brief updates the data in table
+ *@return nothing
+ */
+$.updateTable = function(){
+    //alert("updato la tabella");
+    //foreach city that is clicked(i.e. it is presentin the table), calls the procedure clickCity after setting its clicked value to false
+    for(var i=0; i<$cities.length; i++){
+        if($clicked[$cities[i]]==1){
+            
+            $cit=$cities[i];
+            
+            alert("updato la citta: "+$cities[i]);
+            /*$.deleteRow($indexInTab[$cit]);
+            $clicked[$cit]=0;
+            $clickCity($cit);*/
+        }
+    }
+}
+
+//import $ciao from "filter.js";
 
 $(document).ready(function(){
-    alert("sono in document");
-    //alert($parametersChecked['par0']);
+    //alert("sono in document");
+    
     $(".UniBttn").click(function(){
         //alert("click");
         //it sets the color of the clicked button to red if it was already clicked
         if($clicked[this.id] == 1){
-            alert("color");
+            //alert("color");
             $(this).css("background-color","red");
         }
         //it sets the color of the clicked button to blue if it was not clicked
@@ -240,6 +279,7 @@ $(document).ready(function(){
         $("#container").css("display","none");
         $("#filterContainer").css("display","block");
         $("#tableRanking").css("display","none");
+        $("#depInsertedShow").css("display","none");
     });
     
     $(".par").click(function(){
@@ -270,9 +310,18 @@ $(document).ready(function(){
         $("#container").css("display","none");
         $("#tableRanking").css("display","block");
         $("#filterContainer").css("display","none");
+        $("#depInsertedShow").css("display","none");
     });
     
-    $("#Departments").click(function(){
+    $(".dip").click(function(){
+        //alert("heei sono in departments");
+        if($depClicked !== this.id){
+            $("#"+$depClicked).css("background-color","lightgrey");
+            $depClicked=this.id;
+            //alert($depClicked);
+            $(this).css("background-color","orange");
+            $.updateTable();
+        }
         
     });
 });

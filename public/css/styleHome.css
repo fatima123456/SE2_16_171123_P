@@ -75,3 +75,7 @@ tr:nth-child(odd) {
 body{
     background-color: #f5f3f3;
 }
+
+.dip{
+    background-color: lightgrey;
+}

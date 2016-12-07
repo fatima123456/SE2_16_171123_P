@@ -75,17 +75,22 @@
                     :)
                 </div>
                 
-                <div id="infoUni" style="display:none">
-                
+                <div id="depInsertedShow">
                     <p> 
                         You can also choose to view the informaions about the single departments: 
                     </p>
                     <div class="row" id="Departments">
-                        <button id="engineering">Engineering</button>
-                        <button id="languages">Languages</button>
-                        <button id="medicine">Medicine</button>
-                        <button id="sociology">Sociology</button>
+                        <button id="average" style="background-color:orange" class="dip">Average between the faculties</button>
+                        <button id="engineering" class="dip">Engineering</button>
+                        <button id="languages" class="dip">Languages</button>
+                        <button id="medicine" class="dip">Medicine</button>
+                        <button id="sociology" class="dip">Sociology</button>
                     </div>
+                </div>
+                
+                <div id="infoUni" style="display:none">
+                
+                    
                     
                     <p>Teaching:</p>
                     <table>

@@ -1,3 +1,5 @@
-$(document).ready(function(){
-    alert("sono in doc11");
+$.cio = functio(){
+    alert("ciaooooo");
 }
+
+export.$.cio = $.cio;
