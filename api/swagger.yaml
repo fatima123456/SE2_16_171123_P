@@ -1,0 +1,99 @@
+swagger: '2.0'
+info:
+  title: InfoUni
+  description: gives informations about the italian universities
+  version: "1.0.0"
+# the domain of the service
+host: frozen-beyond-57579.herokuapp.com
+# array of all schemes that your API supports
+schemes:
+  - https
+# will be prefixed to all paths
+basePath: /
+produces:
+  - text
+paths:
+  /:
+    get:
+      summary: the basic page
+      description: 
+        Responses with the html homepage
+      responses:
+        200:
+          description: Ok, sending the page
+          
+        
+  /ita:
+    get:
+      summary: traduction of the page in italian
+      description: 
+        Responses with the html homepage traducted in italian
+      responses:
+        200:
+          description: Ok, sending the page
+          
+  /tab:
+    post:
+      summary: gives the informations about the University department
+      description: responses with all informations about the department of the university 
+      parameters:
+        - name: depart 
+          in: query
+          description: name of the department
+          required: true
+          type: string
+        - name: city
+          in: query
+          description: name of the city
+          required: true
+          type: string
+       
+      responses:
+        200:
+          description: An array with the informations about the department of that university
+          schema:
+            $ref: "#/definitions/info"
+            
+definitions:
+  info:
+    properties:
+      repTeach:
+        type: number
+      staff/student ratio:
+        type: number
+      doctorate/bachelor ratio:
+        type: number
+      doctorate-awarded-to-staff ratio:
+        type: number
+      job-in-3-months:
+        type: number
+      reputaion-survey research:
+        type: number
+      research income:
+        type: number
+      research productivity:
+        type: number
+      research influence:
+        type: number
+      student abroad ratio:
+        type: number
+      international-to-domestic student ratio:
+        type: number
+      international collaboration:
+        type: number
+      scholarship:
+        type: number
+      possibility-to-work-in-the-uni:
+        type: string
+      reputaion-survey services:
+        type: number
+      accomodation:
+        type: string
+      transport:
+        type: string
+      
+             
+             
+       
+  
+
