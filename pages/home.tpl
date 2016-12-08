@@ -42,10 +42,10 @@
             </ul>
             
             <a href="/">
-                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1024px-Flag_of_the_United_Kingdom.svg.png" class="flag" id="EngFlag">
+                <img src="../images/1024px-Flag_of_the_United_Kingdom.svg.png" class="flag" id="EngFlag">
             </a>
             <a href="/ita">
-                <img src="http://www.clipartkid.com/images/94/free-clipart-italian-flag-flags-XIBpzg-clipart.png" class="flag" id="ItaFlag">
+                <img src="../images/free-clipart-italian-flag-flags-XIBpzg-clipart.png" class="flag" id="ItaFlag">
             </a>
         </div>
         

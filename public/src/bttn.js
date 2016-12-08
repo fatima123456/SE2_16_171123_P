@@ -28,6 +28,7 @@ $visible=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
  *@param {string} cit- the element that will be inserted in the first cell of the row
  *@param {number} inizio- the index from which begin to pull the info from the param data
  *@param {number} finito- the index to which stop pulling the info from the param data
+ *@param {number} index- the index of the row to be created
  *@return nothing
  */
 $.appendToTable = function($idToInsert,$idToAppendTo,$data,$cit,$inizio,$finito,$index){
@@ -56,7 +57,7 @@ $.appendToTable = function($idToInsert,$idToAppendTo,$data,$cit,$inizio,$finito,
  *@return nothing
  */
 $.insertInTable=function($data,$cit,$index){
-    alert("creao la riga "+$index+" per la"+$cit);
+    //alert("creao la riga "+$index+" per la"+$cit);
     //increase the number of the cities clicked
     $nUniCurrentlyClicked+=1;
     
@@ -113,12 +114,12 @@ $.resetTable = function(){
  *@return nothing
  */
 $.deleteRow = function($index){
-    alert("cancello la riga "+$index);
+    //alert("cancello la riga "+$index);
     $nUniCurrentlyClicked-=1;
     //removes the rows with the index specified as param 
-    alert("removing teachData" + $index);
+    //alert("removing teachData" + $index);
     $("#teachData"+$index).remove();
-    alert("removing reserchData" + $index);
+    //alert("removing reserchData" + $index);
     $("#researchData"+$index).remove();
     $("#interData"+$index).remove();
     $("#ecoData"+$index).remove();
@@ -207,7 +208,7 @@ $clickCity = function($id){
             //saves that it is clicked, and its index in the table
             $clicked[$id]=1;
             $indexInTab[$id]=$countUniClicked;
-            alert("sono in clickCitu e metto ind "+$countUniClicked+" a "+$id);
+            //alert("sono in clickCitu e metto ind "+$countUniClicked+" a "+$id);
             
             //it sends the post request with the name of the city requested to get the info
             var cit = $id;
@@ -237,7 +238,7 @@ $.updateTable = function(){
             
             $cit=$cities[i];
             
-            alert("updato la citta: "+$cities[i]);
+            //alert("updato la citta: "+$cities[i]);
             $.deleteRow($indexInTab[$cit]);
             $clicked[$cit]=0;
             $clickCity($cit);
