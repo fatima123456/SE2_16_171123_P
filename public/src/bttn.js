@@ -1,3 +1,5 @@
+//var hey=require('./filter.js');
+
 //object to say wether a city is clicked or not
 $clicked={Italia:0, Trento:0, Roma:0, Firenze:0};
 $cities=["Italia", "Trento", "Roma", "Firenze"];
@@ -249,8 +251,8 @@ $.updateTable = function(){
 //import $ciao from "filter.js";
 
 $(document).ready(function(){
-    //alert("sono in document");
-    
+    alert("sono in document");
+   
     $(".UniBttn").click(function(){
         //alert("click");
         //it sets the color of the clicked button to red if it was already clicked
