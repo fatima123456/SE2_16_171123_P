@@ -1,4 +1,4 @@
-//var hey=require('./filter.js');
+//MODEL
 
 //object to say wether a city is clicked or not
 $clicked={Italia:0, Trento:0, Roma:0, Firenze:0};
@@ -21,6 +21,8 @@ $parametersChecked={par0:1, par1:1, par2:1, par3:1, par4:1, par5:1, par6:1, par7
 
 //array to say wether the i-th column is visible or not
 $visible=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
+
+//CONTROL
 
 /*
  *@brief Appends a row to a table
@@ -251,7 +253,7 @@ $.updateTable = function(){
 //import $ciao from "filter.js";
 
 $(document).ready(function(){
-    alert("sono in document");
+    //alert("sono in document");
    
     $(".UniBttn").click(function(){
         //alert("click");
